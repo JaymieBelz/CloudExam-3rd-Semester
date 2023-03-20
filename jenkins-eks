@@ -17,16 +17,10 @@ pipeline {
                 expression { params.ENVIRONMENT == 'create' }
             }
             steps {
-#                timeout(time: 20, unit: 'MINUTES') {
-#                    node {
-#                        sh 'foo'
-#                    } //timeout on whole pipeline job  
- #               }
                 script {
                     dir('Terraform - EKS') {
                         sh "terraform init"
-                        sh "terraform apply -auto-approve"
-                        timeout -s KILL 20m ./Terraform - EKS
+                        sh "terraform apply -auto-approve"                
                     }
                 }
             }
