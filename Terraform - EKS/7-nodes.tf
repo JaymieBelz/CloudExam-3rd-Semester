@@ -34,7 +34,7 @@ resource "aws_eks_node_group" "private-nodes" {
   ]
 
   capacity_type  = "ON_DEMAND"
-  instance_types = ["	t2.large"]
+  instance_types = ["t2.large"]
 
   scaling_config {
     desired_size = 3
