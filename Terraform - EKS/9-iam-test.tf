@@ -1,4 +1,4 @@
-ata "aws_iam_policy_document" "test_oidc_assume_role_policy" {
+data "aws_iam_policy_document" "test_oidc_assume_role_policy" {
   statement {
     actions = ["sts:AssumeRoleWithWebIdentity"]
     effect  = "Allow"
