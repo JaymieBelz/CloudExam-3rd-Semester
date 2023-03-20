@@ -1,5 +1,5 @@
 resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.exam-vpc.id
+  vpc_id = aws_vpc.exam-main.id
 
   route = [
     {
@@ -25,7 +25,7 @@ resource "aws_route_table" "private" {
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.exam-vpc.id
+  vpc_id = aws_vpc.exam-main.id
 
   route = [
     {
@@ -62,7 +62,7 @@ resource "aws_route_table_association" "private-us-east-1b" {
 
 resource "aws_route_table_association" "public-us-east-1a" {
   subnet_id      = aws_subnet.public-us-east-1a.id
-  route_table_id = aws_route_table.public.id  
+  route_table_id = aws_route_table.public.id
 }
 
 resource "aws_route_table_association" "public-us-east-1b" {
