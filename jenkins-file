@@ -6,41 +6,41 @@ pipeline {
         AWS_DEFAULT_REGION = "us-east-1"
     }
 
-    stage("Deploy voting-app to EKS") {
-        steps {
-            script {
-                dir('My-voting-app') {
-                    sh "terraform init"
-                    sh "terraform apply -auto-approve"
-                }
-            }
-        }
-    }
-
-    stage("Deploy sock-shop to EKS") {
-        steps {
-            script {
-                dir('Microservice') {
-                    sh "terraform init"
-                    sh "terraform apply -auto-approve"
-                }
-            }
-        }
-    }    
-
-
-    stage("Create prometheus") {
-        steps {
-            script {
-                dir('Prometheus') {
-                    sh "terraform init"
-                    sh "terraform apply -auto-approve"
-                }
-            }
-        }
-    }
-    
     stages {
+        stage("Deploy voting-app to EKS") {
+            steps {
+                script {
+                    dir('My-voting-app') {
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
+    
+        stage("Deploy sock-shop to EKS") {
+            steps {
+                script {
+                    dir('Microservice') {
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }    
+
+
+        stage("Create prometheus") {
+            steps {
+                script {
+                    dir('Prometheus') {
+                    sh "terraform init"
+                    sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
+    
         stage("Create nginx-controller") {
             steps {
                 script {
