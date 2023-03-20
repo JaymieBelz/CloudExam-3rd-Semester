@@ -57,12 +57,12 @@ resource "helm_release" "ingress_nginx" {
         memory = "30Mi"
       }
     })
-  } 
-  
+  }
+
 }
 
 #output "l" {
-  
+
 #}
 
 # Display load balancer hostname (typically present in AWS)
