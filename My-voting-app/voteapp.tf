@@ -138,3 +138,4 @@ resource "kubernetes_service" "azure-vote-front-svc" {
     }
   }
 }
+
