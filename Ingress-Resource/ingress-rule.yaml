@@ -4,34 +4,52 @@ metadata:
   namespace: sock-shop
   name: sock-shop
   annotations:
-    kubernetes.io/ingress.class: nginx # this should be uncommented if ingress used in "regular" cluster
-   # nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: nginx
+ # this should be uncommented if ingress used in "regular" cluster
+#    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  tls:
+  - hosts:
+    - sock-shop.jaymiebelz.me
+#    - voting-app.jaymiebelz.me
+    secretName: jaymiebelz-tls
+
   rules:
-  - host: sock-app.jaymiebelz.me
+  - host: sock-shop.jaymiebelz.me
     http:
-      path:
+      paths:
+      - path: /
+        pathType: Prefix
         backend:
           service:
-            name: front-end
-            port:
-              number: 80
-    
----
+             name: front-end
+             port:
+               number: 80
 
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: azure-vote-front
   annotations:
-    kubernetes.io/ingress.class: nginx 
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: nginx
+#    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  tls:
+  - hosts:
+#    - sock-app.jaymiebelz.me
+    - voting-app.jaymiebelz.me
+    secretName: jaymiebelz-tls
   rules:
   - host: voting-app.jaymiebelz.me
     http:
-      path:
+      paths:
+      - path: /
+        pathType: Prefix
         backend:
           service:
-            name: azure-vote-front
-            port:
-              number: 80
+             name: azure-vote-front
+             port:
+               number: 80
