@@ -1,5 +1,4 @@
-
-# Create kubernetes deployment for cart 
+# Create kubernetes deployment for cart
 
 resource "kubernetes_deployment" "kube-carts-deployment" {
   metadata {
@@ -67,14 +66,14 @@ resource "kubernetes_deployment" "kube-carts-deployment" {
         mount_path = "/tmp"
       }
         }
-       
+
      volume {
         name = "tmp-volume"
         empty_dir {
             medium = "Memory"
         }
       }
-         
+
       }
     }
   }
@@ -153,7 +152,7 @@ resource "kubernetes_deployment" "kube-carts-db-deployment" {
 
         #readOnlyRootFilesystem = false
         read_only_root_filesystem = true
-            
+
         }
 
       volume_mount {
@@ -168,7 +167,7 @@ resource "kubernetes_deployment" "kube-carts-db-deployment" {
             medium = "Memory"
         }
       }
-  
+
       node_selector = {
         "beta.kubernetes.io/os" = "linux"
       }
@@ -200,7 +199,7 @@ resource "kubernetes_service" "kube-carts-db-service" {
   }
 }
 
-# Create kubernetes deployment for cart 
+# Create kubernetes deployment for cart
 
 resource "kubernetes_deployment" "kube-catalogue-deployment" {
   metadata {
@@ -359,7 +358,7 @@ resource "kubernetes_deployment" "kube-catalogue-db-deployment" {
         value = "socksdb"
       }
         }
-      
+
        node_selector = {
         "beta.kubernetes.io/os" = "linux"
       }
@@ -390,7 +389,7 @@ resource "kubernetes_service" "kube-catalogue-db-service" {
   }
 }
 
-# Create kubernetes deployment for cart 
+# Create kubernetes deployment for cart
 
 resource "kubernetes_deployment" "kube-front-end-deployment" {
   metadata {
@@ -418,7 +417,7 @@ resource "kubernetes_deployment" "kube-front-end-deployment" {
         container {
           image = "weaveworksdemos/front-end:0.3.12"
           name  = "front-end"
-        
+
         env {
         name = "SESSION_REDIS"
         value = "true"
@@ -469,7 +468,7 @@ resource "kubernetes_deployment" "kube-front-end-deployment" {
         period_seconds = 3
       }
         }
-       
+
        node_selector = {
         "beta.kubernetes.io/os" = "linux"
       }
@@ -507,7 +506,7 @@ resource "kubernetes_service" "kube-front-end-service" {
   }
 }
 
-# Create kubernetes deployment for orders 
+# Create kubernetes deployment for orders
 
 resource "kubernetes_deployment" "orders-deployment" {
   metadata {
@@ -574,7 +573,7 @@ resource "kubernetes_deployment" "orders-deployment" {
         mount_path = "/tmp"
       }
         }
-       
+
      volume {
         name = "tmp-volume"
         empty_dir {
@@ -658,7 +657,7 @@ resource "kubernetes_deployment" "orders-db-deployment" {
         }
        # readOnlyRootFilesystem = false
         read_only_root_filesystem = false
-            
+
         }
 
       volume_mount {
@@ -703,7 +702,7 @@ resource "kubernetes_service" "orders-db-service" {
   }
 }
 
-# Create kubernetes deployment for cart 
+# Create kubernetes deployment for cart
 
 resource "kubernetes_deployment" "payment-deployment" {
   metadata {
@@ -779,7 +778,7 @@ resource "kubernetes_deployment" "payment-deployment" {
         period_seconds = 3
       }
 
-      
+
       }
       node_selector = {
         "beta.kubernetes.io/os" = "linux"
@@ -817,7 +816,7 @@ resource "kubernetes_service" "payment-service" {
   }
 }
 
-# Create kubernetes deployment for cart 
+# Create kubernetes deployment for cart
 
 resource "kubernetes_deployment" "queue-master-deployment" {
   metadata {
@@ -903,7 +902,7 @@ resource "kubernetes_service" "queue-master-service" {
   }
 }
 
-# Create kubernetes deployment for cart 
+# Create kubernetes deployment for cart
 
 resource "kubernetes_deployment" "rabbitmq-deployment" {
   metadata {
@@ -942,7 +941,7 @@ resource "kubernetes_deployment" "rabbitmq-deployment" {
 
       port {
         name = "management"
-        container_port = 15672 
+        container_port = 15672
       }
 
       security_context {
@@ -1009,7 +1008,7 @@ resource "kubernetes_service" "rabbitmq-service" {
   }
 }
 
-# Create kubernetes deployment for cart 
+# Create kubernetes deployment for cart
 
 resource "kubernetes_deployment" "session-db-deployment" {
   metadata {
@@ -1054,7 +1053,7 @@ resource "kubernetes_deployment" "session-db-deployment" {
         #readOnlyRootFilesystem = false
         read_only_root_filesystem = false
       }
-     
+
       }
         node_selector = {
         "beta.kubernetes.io/os" = "linux"
@@ -1088,7 +1087,7 @@ resource "kubernetes_service" "session-db-service" {
   }
 }
 
-# Create kubernetes deployment for cart 
+# Create kubernetes deployment for cart
 
 resource "kubernetes_deployment" "shipping-deployment" {
   metadata {
@@ -1160,7 +1159,7 @@ resource "kubernetes_deployment" "shipping-deployment" {
         mount_path = "/tmp"
       }
         }
-       
+
      volume {
         name = "tmp-volume"
         empty_dir {
@@ -1205,7 +1204,7 @@ resource "kubernetes_service" "shipping-service" {
   }
 }
 
-# Create kubernetes deployment for cart 
+# Create kubernetes deployment for cart
 
 resource "kubernetes_deployment" "user-deployment" {
   metadata {
@@ -1365,7 +1364,7 @@ resource "kubernetes_deployment" "user-db-deployment" {
         }
         read_only_root_filesystem = true
        # readOnlyRootFilesystem = false
-            
+
         }
 
       volume_mount {
@@ -1410,3 +1409,4 @@ resource "kubernetes_service" "user-db-service" {
     }
   }
 }
+
