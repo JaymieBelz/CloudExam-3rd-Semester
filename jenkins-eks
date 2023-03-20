@@ -9,9 +9,7 @@ pipeline {
         choice(name: 'ENVIRONMENT', choices: ['create', 'destroy'], description: 'to destroy or create')
     }
 
-    options {
-        timeout(time: 20, unit: 'MINUTES') //timeout on whole pipeline job  
-    }
+
 
     stages {
         stage("create an EKS Cluster") {
@@ -19,6 +17,11 @@ pipeline {
                 expression { params.ENVIRONMENT == 'create' }
             }
             steps {
+                timeout(time: 20, unit: 'MINUTES') {
+                    node {
+                        sh 'foo'
+                    } //timeout on whole pipeline job  
+                }
                 script {
                     dir('Terraform - EKS') {
                         sh "terraform init"
