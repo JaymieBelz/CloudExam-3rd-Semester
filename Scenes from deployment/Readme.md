@@ -1,6 +1,6 @@
 ## CloudExam-3rd-Semester
 
-### Sequel to my suspension on AWS, these are the evidence I was able to recover from my infrastructure. Sadly, I couldn't take a screenshot of my Jenkins interface while running it.  
+### Sequel to my suspension on AWS, this is the proof of my deployment. Sadly, I couldn't take a screenshot of my Jenkins interface while running it.  
 
 <br>
 
